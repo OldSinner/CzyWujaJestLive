@@ -5,12 +5,12 @@ const app = express();
 const port = 3000;
 const { ApiClient } = require("twitch");
 const { ClientCredentialsAuthProvider } = require("twitch-auth");
-
+var cors = require("cors");
 const clientId = process.env.CLIENT_ID;
 const clientSecret = process.env.CLIENT_SECRET;
 const authProvider = new ClientCredentialsAuthProvider(clientId, clientSecret);
 const apiClient = new ApiClient({ authProvider });
-
+app.use(cors());
 app.get("/", async (req, res) => {
   var data = {
     status: 0,

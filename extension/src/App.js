@@ -13,7 +13,7 @@ function App() {
   useEffect(() => {
     setStatus(0);
     axios
-      .get("http://localhost:3000/")
+      .get("https://fantastic-erin-lizard.cyclic.app/")
       .then(({ data }) => {
         if (data == null) {
           return;
