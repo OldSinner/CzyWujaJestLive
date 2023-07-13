@@ -2,7 +2,13 @@
   "short_name": "CzyWuja",
   "name": "Czy Wuja Jest Live",
   "manifest_version": 3,
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "icons": {
+    "16": "awizo.png",
+    "32": "awizo.png",
+    "48": "awizo.png",
+    "128": "awizo.png"
+  },
   "action": {
     "default_popup": "index.html"
   }
