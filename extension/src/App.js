@@ -7,7 +7,6 @@ import axios from "axios";
 
 function App() {
   const [status, setStatus] = useState();
-  const [title, setTitle] = useState("");
   const [checkLaunch, setCheckLaunch] = useState(1);
 
   useEffect(() => {
@@ -19,9 +18,9 @@ function App() {
           return;
         }
         setStatus(data.status);
-        setTitle(data.text);
       })
       .catch((err) => {
+        console.log(err);
         setStatus(4);
       });
   }, [checkLaunch]);
@@ -32,45 +31,38 @@ function App() {
         <div className="header">
           Czy <span className="hlight">Wuja</span> jest Live?
         </div>
-        {status === 0 && (
-          <div className="content">
-            <img src={loading} alt="loading" className="loading" />
+        <div className="content">
+          <div className="content_text">
+            {status === 0 && (
+              <div className="content">
+                <img src={loading} alt="loading" className="loading" />
+              </div>
+            )}
+            {status === 1 && (
+              <>
+                Stary nie streamuje, ale zawsze możesz obejrzeć shoty na kanale{" "}
+                <span className="hlight">AwizoTV</span>
+              </>
+            )}
+            {status === 2 && (
+              <>
+                Stary siedzi na <span className="hlight">YouTube</span> <br />
+              </>
+            )}
+            {status === 3 && (
+              <>
+                Stary siedzi na <span className="hlight">Twitch</span> <br />
+              </>
+            )}
+            {status === 4 && (
+              <>
+                {" "}
+                Wystąpił błąd! <br />
+                Nigdy nie dowiemy się prawdy!
+              </>
+            )}
           </div>
-        )}
-        {status === 1 && (
-          <div className="content">
-            <div className="content_text">
-              Stary nie streamuje, ale zawsze możesz obejrzeć shoty na kanale{" "}
-              <a href="https://www.youtube.com/@AwizoTV">AwizoTV</a>
-            </div>
-          </div>
-        )}
-        {status === 2 && (
-          <div className="content">
-            <div className="content_text">
-              Stary siedzi na <span className="hlight">YouTube</span> <br />
-              <a href="https://www.youtube.com/@dominikbos/live">
-                Kliknij tutaj
-              </a>
-            </div>
-          </div>
-        )}
-        {status === 3 && (
-          <div className="content">
-            <div className="content_text">
-              Stary siedzi na <span className="hlight">Twitch</span> <br />
-              <a href="https://www.twitch.tv/awizotv">Kliknij tutaj</a>
-            </div>
-          </div>
-        )}
-        {status === 3 && (
-          <div className="content">
-            <div className="content_text">
-              Wystąpił błąd! <br />
-              Nigdy nie dowiemy się prawdy!
-            </div>
-          </div>
-        )}
+        </div>
         <div className="footer">
           <button
             onClick={() => {
